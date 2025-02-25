@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Generated Timetable</h2>
+    <table border="1">
+        <tr>
+            <th>Subject</th>
+            <th>Room</th>
+            <th>Teacher</th>
+            <th>Time Slot</th>
+        </tr>
+        {% for entry in timetable %}
+        <tr>
+            <td>{{ entry.0 }}</td>
+            <td>{{ entry.1 }}</td>
+            <td>{{ entry.2 }}</td>
+            <td>{{ entry.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form method="post" action="{% url 'generate_timetable' %}">
+        {% csrf_token %}
+        <button type="submit">Regenerate Timetable</button>
+    </form>
+{% endblock %}
